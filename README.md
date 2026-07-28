@@ -1,4 +1,4 @@
-[リハビリ科採用面接評価アプリ (2).html](https://github.com/user-attachments/files/30453087/2.html)
+[リハビリ科採用面接評価アプリ (3).html](https://github.com/user-attachments/files/30453897/3.html)
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -325,7 +325,65 @@ function radarValues(){
 }
 
 // ============ Storage ============
+// Wraps window.storage (persists across sessions inside the Claude app) with an
+// in-memory fallback so the app still works — just without persistence — if this
+// file is opened somewhere window.storage isn't available (e.g. as a plain local
+// file, or in some previews/browsers).
 const LIST_KEY = 'evaluations:index';
+let usingFallback = false;
+let fallbackWarned = false;
+const memoryStore = {};
+
+function warnFallbackOnce(){
+  if(!fallbackWarned){
+    fallbackWarned = true;
+    showToast('この表示環境では保存が一時的（このタブを閉じると消えます）になっています');
+  }
+}
+
+const db = {
+  async get(key){
+    if(!usingFallback){
+      try{
+        return await window.storage.get(key, false);
+      }catch(e){
+        // storage API missing or errored -> switch to fallback for the rest of the session
+        usingFallback = true;
+        warnFallbackOnce();
+      }
+    }
+    return (key in memoryStore) ? {key, value: memoryStore[key]} : null;
+  },
+  async set(key, value){
+    if(!usingFallback){
+      try{
+        return await window.storage.set(key, value, false);
+      }catch(e){
+        usingFallback = true;
+        warnFallbackOnce();
+      }
+    }
+    memoryStore[key] = value;
+    return {key, value};
+  },
+  async delete(key){
+    if(!usingFallback){
+      try{
+        return await window.storage.delete(key, false);
+      }catch(e){
+        usingFallback = true;
+        warnFallbackOnce();
+      }
+    }
+    delete memoryStore[key];
+    return {key, deleted:true};
+  }
+};
+
+// If window.storage doesn't exist at all, go straight to fallback (avoids a slow failed call).
+if(typeof window.storage === 'undefined' || window.storage === null){
+  usingFallback = true;
+}
 
 async function saveEvaluation(){
   if(!state.name.trim()){
@@ -335,32 +393,32 @@ async function saveEvaluation(){
   if(!state.id) state.id = 'ev_' + Date.now() + '_' + Math.random().toString(36).slice(2,7);
   const record = {...state, savedAt: new Date().toISOString()};
   try{
-    await window.storage.set('eval:'+state.id, JSON.stringify(record), false);
+    await db.set('eval:'+state.id, JSON.stringify(record));
     let idx = [];
     try{
-      const r = await window.storage.get(LIST_KEY, false);
+      const r = await db.get(LIST_KEY);
       idx = r ? JSON.parse(r.value) : [];
     }catch(e){ idx = []; }
     idx = idx.filter(x=>x.id!==state.id);
     idx.unshift({id:state.id, name:state.name, date:state.date, jobType:state.jobType, savedAt:record.savedAt});
-    await window.storage.set(LIST_KEY, JSON.stringify(idx), false);
-    showToast('保存しました');
+    await db.set(LIST_KEY, JSON.stringify(idx));
+    showToast(usingFallback ? '一時保存しました（永続保存は無効です）' : '保存しました');
   }catch(e){
-    console.error(e);
-    showToast('保存に失敗しました');
+    console.error('save failed:', e);
+    showToast('保存に失敗しました（' + (e && e.message ? e.message : '不明なエラー') + '）');
   }
 }
 
 async function loadIndex(){
   try{
-    const r = await window.storage.get(LIST_KEY, false);
+    const r = await db.get(LIST_KEY);
     return r ? JSON.parse(r.value) : [];
   }catch(e){ return []; }
 }
 
 async function loadEvaluation(id){
   try{
-    const r = await window.storage.get('eval:'+id, false);
+    const r = await db.get('eval:'+id);
     if(!r) return null;
     return JSON.parse(r.value);
   }catch(e){ return null; }
@@ -368,10 +426,20 @@ async function loadEvaluation(id){
 
 async function deleteEvaluation(id){
   try{
-    await window.storage.delete('eval:'+id, false);
+    await db.delete('eval:'+id);
     let idx = await loadIndex();
     idx = idx.filter(x=>x.id!==id);
-    await window.storage.set(LIST_KEY, JSON.stringify(idx), false);
+    await db.set(LIST_KEY, JSON.stringify(idx));
+  }catch(e){ console.error(e); }
+}
+
+async function deleteAllEvaluations(){
+  try{
+    const idx = await loadIndex();
+    for(const it of idx){
+      await db.delete('eval:'+it.id);
+    }
+    await db.set(LIST_KEY, JSON.stringify([]));
   }catch(e){ console.error(e); }
 }
 
@@ -646,7 +714,10 @@ async function openDrawer(){
     body.innerHTML = '<p class="empty-note">保存された評価はまだありません</p>';
     return;
   }
-  body.innerHTML = idx.map(it=>`
+  const clearAllHtml = `<div style="text-align:right; margin-bottom:10px;">
+    <button class="danger" id="btnClearAll" style="font-size:11.5px; padding:5px 10px; border-radius:999px; border:1px solid var(--red-soft); background:#fdfcf9; color:var(--red); cursor:pointer;">すべて削除</button>
+  </div>`;
+  body.innerHTML = clearAllHtml + idx.map(it=>`
     <div class="saved-item" data-id="${it.id}">
       <div class="name">${escapeHtml(it.name||'（氏名未入力）')}</div>
       <div class="meta">${escapeHtml(jobLabel(it.jobType))} ／ 面接日: ${escapeHtml(it.date||'—')}</div>
@@ -657,6 +728,13 @@ async function openDrawer(){
       </div>
     </div>
   `).join('');
+  document.getElementById('btnClearAll')?.addEventListener('click', async ()=>{
+    if(confirm('保存されているすべての評価を削除しますか？この操作は元に戻せません。')){
+      await deleteAllEvaluations();
+      openDrawer();
+      showToast('すべて削除しました');
+    }
+  });
   body.querySelectorAll('.saved-item').forEach(el=>{
     const id = el.dataset.id;
     el.querySelector('[data-action="open"]').addEventListener('click', async ()=>{
