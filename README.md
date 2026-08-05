@@ -1,4 +1,4 @@
-[リハビリ科採用面接評価アプリ (3).html](https://github.com/user-attachments/files/30453897/3.html)
+[リハビリ科採用面接評価アプリ (2).html](https://github.com/user-attachments/files/30736622/2.html)
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -114,6 +114,20 @@ body{
 .radar-box{display:flex; flex-direction:column; align-items:center; gap:4px;}
 .radar-box svg{width:170px; height:170px;}
 .radar-caption{font-size:10.5px; color:#b8c7cc; text-align:center;}
+
+/* ---------- Consistency hint (inline, per question) ---------- */
+.link-hint{
+  margin-top:8px; background:var(--amber-soft); border:1px solid #e8d4a8; border-radius:8px; padding:2px 12px;
+}
+.link-hint summary{
+  cursor:pointer; font-size:11.5px; font-weight:700; color:#8a6118; list-style:none; padding:8px 0;
+}
+.link-hint summary::-webkit-details-marker{display:none;}
+.link-hint summary:before{content:"▸ "; font-size:10px;}
+.link-hint[open] summary:before{content:"▾ ";}
+.link-hint-body{padding:0 0 10px; font-size:12px; color:#6b5220; line-height:1.6;}
+.link-hint-body p{margin:0;}
+.link-hint-body b{color:#8a6118;}
 
 /* ---------- Category sections ---------- */
 .category{margin:22px 0 0;}
@@ -245,8 +259,8 @@ body{
 </div>
 <div class="toast" id="toast"></div>
 
-<script id="data-prof" type="application/json">[{"id": "p8", "category": "①主体性", "sub": "自発的行動", "question": "指示がない状況でも自分から動いた経験を教えてください。特に臨床場面で、誰かに言われる前に動いたエピソードを具体的に。", "weight": 5, "target": "ALL", "good": "患者の急変に気づき医師に即報告した、申し送り前に記録を整理して次の担当者が動きやすくした", "bad": "「言われていなかったので動かなかった」「何をすべきか分からず待っていた」"}, {"id": "p9", "category": "①主体性", "sub": "問題への気づき", "question": "担当患者や業務の中で「このままでは良くない」と感じて、自発的に行動を起こした経験はありますか？", "weight": 5, "target": "ALL", "good": "「このままだと廃用が進む」と感じてPTに相談・対策を提案した経験を具体的に語れる", "bad": "「特に気になったことはない」「先輩に任せていた」と他人任せな回答"}, {"id": "p11", "category": "②報連相", "sub": "報告タイミング", "question": "患者の状態変化や判断に迷う場面で、どのタイミングで上司・医師に報告・相談しますか？基準を教えてください。", "weight": 5, "target": "ALL", "good": "「バイタルが基準値を外れた時点で即報告する」など明確な基準を持っている", "bad": "「なんとなく様子を見てから」「自分で判断してから報告する」"}, {"id": "p12", "category": "②報連相", "sub": "連絡の質", "question": "「報連相がうまくいかなかった」または「うまくできた」臨床経験を一つ教えてください。何が違いを生みましたか？", "weight": 5, "target": "ALL", "good": "「伝え方が曖昧で誤解を生んだ。以後5W1Hで簡潔に伝えるようにした」など学びがある", "bad": "「失敗したことはない」と断言、または具体的エピソードが出てこない"}, {"id": "p14", "category": "③チーム志向", "sub": "チーム最適", "question": "自分の治療方針と異なるチームの方針になった場合、どのように行動しますか？", "weight": 5, "target": "ALL", "good": "「まず方針の意図を理解しようとし、納得できなければ適切な場で意見を述べ、最終的にはチームの判断に従う」", "bad": "「自分のやり方が正しいので従えない」「黙って従うだけ」の二択思考"}, {"id": "p16", "category": "③チーム志向", "sub": "対立経験", "question": "チーム内で意見の対立があったとき、あなたはどう動きましたか？結果はどうなりましたか？", "weight": 5, "target": "ALL", "good": "「相手の立場を理解した上で話し合いの場を設けた」など建設的な対応", "bad": "「無視した」「上司に丸投げした」「対立したことがない」と回避"}, {"id": "p17", "category": "④問題解決力", "sub": "事実確認", "question": "患者の改善が見られないとき、まず何を確認しますか？その理由と手順を教えてください。", "weight": 5, "target": "ALL", "good": "「まずADL・生活環境・患者の主訴・プログラムのアドヒアランスを確認する」と手順が明確", "bad": "「もっと頑張ってもらう」「手技を変えてみる」と原因確認なしで行動"}, {"id": "p18", "category": "④問題解決力", "sub": "原因分析", "question": "治療効果が出ていないと感じたとき、どのように原因を特定し、プログラムを修正しますか？", "weight": 5, "target": "ALL", "good": "「評価と目標のズレ、患者の生活環境、モチベーションの3軸で原因を整理してから修正する」", "bad": "「とりあえず別の手技を試す」「もう少し様子を見る」と場当たり的"}, {"id": "p19", "category": "④問題解決力", "sub": "解決行動", "question": "臨床上の問題（患者・業務・チーム）を自分主導で解決したエピソードを教えてください。", "weight": 5, "target": "ALL", "good": "問題→原因→対策→結果まで一連のエピソードを語れる", "bad": "「問題は感じていたが特に動かなかった」「先輩が解決してくれた」"}, {"id": "p21", "category": "⑤素直さ", "sub": "フィードバック受容", "question": "上司・先輩・医師から厳しい指摘を受けたとき、どのように受け止め、その後どう行動しましたか？", "weight": 5, "target": "ALL", "good": "「最初は納得できなかったが、指摘の意図を考え直し翌日から行動を変えた」", "bad": "「理不尽だと思った」で止まる、または「そういう指摘を受けたことがない」"}, {"id": "p22", "category": "⑤素直さ", "sub": "自己認識", "question": "自分の臨床上の弱点・苦手な領域を教えてください。それに対してどう取り組んでいますか？", "weight": 4, "target": "ALL", "good": "具体的な弱点＋現在進行形の改善行動をセットで語れる", "bad": "「特に弱点はない」「弱点はあるが対策はしていない」"}, {"id": "p24", "category": "患者指導・行動変容（PT）", "sub": "自立支援の哲学", "question": "リハビリの最終ゴールは何だと考えていますか？そのゴールに向けて患者にどう関わるべきか、考えを教えてください。", "weight": 5, "target": "PT", "good": "「患者さんが自分でできることを増やすこと。そのために自主トレの習慣化と生活指導を必ずセットにする」", "bad": "「患者さんに満足してもらうこと」「症状を取ること」と受動的な目標設定"}, {"id": "p25", "category": "患者指導・行動変容（PT）", "sub": "迎合対応の判断", "question": "「マッサージしてほしい」と繰り返し求める患者がいます。あなたはどう対応しますか？その理由も教えてください。", "weight": 5, "target": "PT", "good": "「なぜマッサージだけでは改善しないかを丁寧に説明し、本来必要なアプローチに切り替える」", "bad": "「とりあえずマッサージをしてから本来の治療をする」「患者さんの希望なので断れない」"}, {"id": "p26", "category": "患者指導・行動変容（PT）", "sub": "行動変容アプローチ", "question": "運動習慣のない患者に自宅での運動を継続させるために、どのような工夫をしていますか？", "weight": 5, "target": "PT", "good": "「最初は10分の散歩から。達成感を記録してもらい、翌週に一緒に振り返る」など段階的・具体的", "bad": "「頑張ってくださいと伝える」「毎回声かけをする」と精神論・抽象論のみ"}, {"id": "p27", "category": "患者指導・行動変容（PT）", "sub": "生活習慣指導", "question": "痛みの原因が食事・運動・睡眠などの生活習慣にあると判断したとき、患者にどのように伝え改善を促しますか？", "weight": 5, "target": "PT", "good": "「食事・運動・睡眠のどこが最もネックか一緒に整理し、小さく始める行動目標を一つ決める」", "bad": "「生活改善が必要ですと伝えている」「患者さんが聞かないので難しい」と諦め"}, {"id": "p30", "category": "患者指導・行動変容（PT）", "sub": "指導と関係性のバランス", "question": "患者が望まないこと（運動・生活改善など）を促すとき、信頼関係を保ちながらどのように伝えますか？", "weight": 5, "target": "PT", "good": "「なぜ必要かの根拠を伝えた上で、患者さんの価値観に沿った言い方を工夫する」", "bad": "「言っても聞かないので最近は言わないようにしている」「嫌われたくないので強く言えない」"}, {"id": "p31", "category": "コミュニケーション・多職種連携", "sub": "スタッフ間連携", "question": "PT・柔整・リハビリ助手・受付など他職種と意見が合わなかった経験と、その対処法を教えてください。", "weight": 4, "target": "ALL", "good": "「まず相手の意図を確認し、自分の意見は根拠とともに伝え、最終的には合意形成を優先する」", "bad": "「自分が正しいので譲らなかった」「波風を立てたくないので従った」"}, {"id": "p34", "category": "コミュニケーション・多職種連携", "sub": "患者説明", "question": "リハビリの目的・効果・見込みを患者にどのように説明していますか？", "weight": 4, "target": "ALL", "good": "「専門用語を避け、患者の生活に即した言葉で、ゴールから逆算して説明する」", "bad": "「説明はしている」と言うが具体的な工夫が語れない"}, {"id": "p36", "category": "感情コントロール・ストレス耐性", "sub": "ストレス耐性", "question": "最もストレスを感じた状況と、その対処法を教えてください。", "weight": 4, "target": "ALL", "good": "「業務後に振り返りを書く・信頼できる同僚に話すなど、具体的な対処法を持っている」", "bad": "「特にストレスは感じない」と鈍感または「ずっと引きずる」と対処なし"}, {"id": "p38", "category": "勤務姿勢・長期定着", "sub": "転職・応募理由", "question": "前職（現職）の退職理由と、当院を選んだ理由を教えてください。", "weight": 5, "target": "ALL", "good": "退職理由が他責でなく、当院への応募理由が具体的（理念・患者層・成長環境など）", "bad": "「給与」「人間関係が嫌だった」のみ。当院への志望理由が曖昧・消去法"}]</script>
-<script id="data-asst" type="application/json">[{"id": "a7", "category": "①主体性", "sub": "自発的行動", "question": "指示がない状況で、自分から動いた経験を教えてください。具体的にどう判断しましたか？", "weight": 5, "good": "「患者さんが待合で不安そうだったので、声をかけて状況を確認し担当者に伝えた」など具体的", "bad": "「言われたことはやっている」「特に気になることはなかった」と受け身"}, {"id": "a8", "category": "①主体性", "sub": "気づき力", "question": "業務中に「誰も気づいていないが自分が気づいた問題」を発見した経験はありますか？", "weight": 5, "good": "「消耗品の在庫が切れそうなことに気づいて、指示前に発注を提案した」など先読み行動", "bad": "「気づかなかった」「自分の仕事ではないと思った」"}, {"id": "a10", "category": "②報連相", "sub": "報告タイミング", "question": "業務中に判断に迷った際、どのタイミングで上司・先輩に報告・相談しますか？", "weight": 5, "good": "「患者さんが痛みを訴えた時点で即スタッフに伝える。判断は自分でしない」と明確", "bad": "「大丈夫そうだったので様子を見た」「後で言おうと思っていた」"}, {"id": "a11", "category": "②報連相", "sub": "連絡の質", "question": "「報連相で失敗した」または「うまくできた」経験を一つ教えてください。", "weight": 5, "good": "「曖昧な伝え方で誤解された。以来、5W1Hで簡潔に伝えるようにした」と学びがある", "bad": "「失敗したことはない」と断言／具体的エピソードが出てこない"}, {"id": "a13", "category": "③チーム志向", "sub": "チーム最適", "question": "自分の意見と違う方針になった場合、どのように行動しますか？", "weight": 5, "good": "「まず方針の意図を理解しようとする。意見があれば適切なタイミングで伝える」", "bad": "「自分の考えと違うので従えない」または「何も言わず不満を抱える」"}, {"id": "a15", "category": "③チーム志向", "sub": "対立経験", "question": "チームの中で意見の食い違いがあったとき、あなたはどう動きましたか？", "weight": 5, "good": "「相手の立場を理解した上で、場所を変えて話し合った」など建設的", "bad": "「無視した」「上司に丸投げ」「対立したことがない（経験ゼロ）」"}, {"id": "a17", "category": "④問題解決力", "sub": "原因分析", "question": "業務上の問題（ミス・非効率・患者の不満など）に気づいたとき、どのように原因を特定しますか？", "weight": 5, "good": "「何が原因かを複数の角度から考えてから動く」と順序立てて説明できる", "bad": "「感覚で対応する」「とにかく謝る」と思考の手順がない"}, {"id": "a20", "category": "⑤素直さ", "sub": "フィードバック受容", "question": "上司・先輩から厳しい指摘を受けたとき、どのように受け止め行動しましたか？", "weight": 5, "good": "「最初は落ち込んだが、指摘の意図を考え直して翌日から行動を変えた」", "bad": "「理不尽だと思った」で終わる、または「そういう指摘を受けたことがない」"}, {"id": "a21", "category": "⑤素直さ", "sub": "自己認識", "question": "自分の弱点・苦手なことを教えてください。それに対してどう取り組んでいますか？", "weight": 4, "good": "具体的な弱点＋現在取り組んでいることをセットで語れる", "bad": "「特に弱点はない」「弱点はあるが特に対策はしていない」"}, {"id": "a23", "category": "勤務姿勢・長期定着", "sub": "転職・応募理由", "question": "前職（現職）の退職理由と、当院を選んだ理由を教えてください。", "weight": 5, "good": "退職理由が他責でなく、当院への応募理由が具体的（患者層・チーム環境など）", "bad": "「給与」「人間関係が嫌だった」のみ。志望理由が曖昧・消去法"}]</script>
+<script id="data-prof" type="application/json">[{"id": "p38", "category": "①勤務姿勢・長期定着", "sub": "転職・応募理由", "question": "前職（現職）の退職理由と、当院を選んだ理由を教えてください。", "weight": 5, "target": "ALL", "good": "退職理由が他責でなく、当院への応募理由が具体的（理念・患者層・成長環境など）", "bad": "「給与」「人間関係が嫌だった」のみ。当院への志望理由が曖昧・消去法"}, {"id": "p8", "category": "②主体性", "sub": "自発的行動", "question": "指示がない状況でも自分から動いた経験を教えてください。特に臨床場面で、誰かに言われる前に動いたエピソードを具体的に。", "weight": 5, "target": "ALL", "good": "患者の急変に気づき医師に即報告した、申し送り前に記録を整理して次の担当者が動きやすくした", "bad": "「言われていなかったので動かなかった」「何をすべきか分からず待っていた」"}, {"id": "p9", "category": "②主体性", "sub": "自己研鑽・学習意欲", "question": "ご自身のスキルアップのために、現在定期的に参加されている外部の講習会や勉強会などはありますか？ 具体的にどのような手技や理論を学ばれているかも併せて教えてください。", "weight": 5, "target": "ALL", "good": "参加している講習会・勉強会名や学んでいる手技・理論を具体的に説明でき、学びを日々の臨床にどう活かしているかまで話せる", "bad": "「特に参加していない」「業務で手一杯で余裕がない」など、具体的な学びの機会や継続的な自己研鑽の姿勢が見られない"}, {"id": "p11", "category": "③報連相", "sub": "報告タイミング", "question": "患者の状態変化や判断に迷う場面で、どのタイミングで上司・医師に報告・相談しますか？基準を教えてください。", "weight": 5, "target": "ALL", "good": "「バイタルが基準値を外れた時点で即報告する」など明確な基準を持っている", "bad": "「なんとなく様子を見てから」「自分で判断してから報告する」"}, {"id": "p12", "category": "③報連相", "sub": "連絡の質", "question": "「報連相がうまくいかなかった」または「うまくできた」臨床経験を一つ教えてください。何が違いを生みましたか？", "weight": 5, "target": "ALL", "good": "「伝え方が曖昧で誤解を生んだ。以後5W1Hで簡潔に伝えるようにした」など学びがある", "bad": "「失敗したことはない」と断言、または具体的エピソードが出てこない"}, {"id": "p14", "category": "④チーム志向", "sub": "チーム最適", "question": "自分の治療方針と異なるチームの方針になった場合、どのように行動しますか？", "weight": 5, "target": "ALL", "good": "「まず方針の意図を理解しようとし、納得できなければ適切な場で意見を述べ、最終的にはチームの判断に従う」", "bad": "「自分のやり方が正しいので従えない」「黙って従うだけ」の二択思考"}, {"id": "p16", "category": "④チーム志向", "sub": "対立経験", "question": "チームメンバーと意見が食い違った際、どのようにコミュニケーションを図り、解決に導きますか？", "weight": 5, "target": "ALL", "good": "相手の意見を一度受け止めた上で、事実や患者様にとっての最善を基準に話し合い、建設的に着地させたプロセスを具体的に語れる", "bad": "「自分の意見を通す」「上司に判断を丸投げする」など、対話や歩み寄りの姿勢が見られない、または対立を避けて終わらせている"}, {"id": "p17", "category": "⑤問題解決力", "sub": "事実確認・原因分析", "question": "リハビリが計画通りに進まない、あるいは患者様の状態が思わしくないといった課題に直面した際、まずどのような事実（情報）を確認し、どのようにその原因を分析していますか？", "weight": 5, "target": "ALL", "good": "バイタルや動作状況、患者様の発言、生活環境など複数の情報源から事実を整理し、身体面・心理面・環境面など多角的な視点で原因を仮説立てて考えられている", "bad": "「なんとなく」「経験則だけで」判断する、事実確認をせず思い込みで対応を変えてしまう、原因を1つの要因だけに決めつける"}, {"id": "p19", "category": "⑤問題解決力", "sub": "解決行動", "question": "業務上や臨床上の問題（患者・業務・チーム）を自分主導で解決したエピソードを教えてください。", "weight": 5, "target": "ALL", "good": "問題の発見→自ら取った具体的な行動→結果（改善したこと）まで一連の流れを主体的に語れる", "bad": "「気づいたが誰かに相談して終わった」「解決したのは自分ではなく上司や先輩だった」など主体性が見えない"}, {"id": "p21", "category": "⑥素直さ", "sub": "フィードバック受容", "question": "上司・先輩・医師から厳しい指摘を受けたとき、どのように受け止め、その後どう行動しましたか？", "weight": 5, "target": "ALL", "good": "「最初は納得できなかったが、指摘の意図を考え直し翌日から行動を変えた」", "bad": "「理不尽だと思った」で止まる、または「そういう指摘を受けたことがない」"}, {"id": "p22", "category": "⑥素直さ", "sub": "自己認識", "question": "自分の臨床上の弱点・苦手な領域を教えてください。それに対してどう取り組んでいますか？", "weight": 4, "target": "ALL", "good": "具体的な弱点＋現在進行形の改善行動をセットで語れる", "bad": "「特に弱点はない」「弱点はあるが対策はしていない」"}, {"id": "p24", "category": "⑦患者指導・行動変容（PT）", "sub": "自立支援の哲学", "question": "リハビリの最終ゴールは何だと考えていますか？そのゴールに向けて患者にどう関わるべきか、考えを教えてください。", "weight": 5, "target": "PT", "good": "「患者さんが自分でできることを増やすこと。そのために自主トレの習慣化と生活指導を必ずセットにする」", "bad": "「患者さんに満足してもらうこと」「症状を取ること」と受動的な目標設定"}, {"id": "p25", "category": "⑦患者指導・行動変容（PT）", "sub": "迎合対応の判断", "question": "「マッサージしてほしい」と繰り返し求める患者がいます。あなたはどう対応しますか？その理由も教えてください。", "weight": 5, "target": "PT", "good": "「なぜマッサージだけでは改善しないかを丁寧に説明し、本来必要なアプローチに切り替える」", "bad": "「とりあえずマッサージをしてから本来の治療をする」「患者さんの希望なので断れない」"}, {"id": "p27", "category": "⑦患者指導・行動変容（PT）", "sub": "生活指導と信頼関係", "question": "患者様に生活習慣の改善（セルフケアの定着など）を促す際、指導の必要性を伝えつつ、患者様との良好な信頼関係を維持するために、どのような点に配慮していますか？", "weight": 5, "target": "PT", "good": "一方的に指導するのではなく、患者様の生活背景や気持ちに配慮しながら、必要性を分かりやすく伝え、小さな成功体験を積めるよう工夫している", "bad": "「言うことを聞いてもらえればいい」など患者様の意向を無視した一方的な指導、または関係性を気にするあまり必要な指導を避けてしまう"}, {"id": "p31", "category": "⑧コミュニケーション・多職種連携", "sub": "多職種間の意見相違", "question": "医師や受付など他職種と意見が合わなかった経験と、その対処法を教えてください。", "weight": 4, "target": "ALL", "good": "医師や受付など専門・役割の異なるスタッフの立場や事情を踏まえた上で、歩み寄り・調整して合意形成した具体例を話せる", "bad": "「自分の意見を通した」「関わらないようにした」など、職種の違いを踏まえた歩み寄りが見られない、または経験がないと答えて終わる"}, {"id": "p34", "category": "⑧コミュニケーション・多職種連携", "sub": "患者説明", "question": "リハビリの目的・効果・見込みを患者にどのように説明していますか？", "weight": 4, "target": "ALL", "good": "「専門用語を避け、患者の生活に即した言葉で、ゴールから逆算して説明する」", "bad": "「説明はしている」と言うが具体的な工夫が語れない"}, {"id": "p36", "category": "⑨感情コントロール・ストレス耐性", "sub": "ストレス耐性", "question": "最もストレスを感じた状況と、その対処法を教えてください。", "weight": 4, "target": "ALL", "good": "「業務後に振り返りを書く・信頼できる同僚に話すなど、具体的な対処法を持っている」", "bad": "「特にストレスは感じない」と鈍感または「ずっと引きずる」と対処なし"}]</script>
+<script id="data-asst" type="application/json">[{"id": "a23", "category": "①勤務姿勢・長期定着", "sub": "転職・応募理由", "question": "前職（現職）の退職理由と、当院を選んだ理由を教えてください。", "weight": 5, "good": "退職理由が他責でなく、当院への応募理由が具体的（患者層・チーム環境など）", "bad": "「給与」「人間関係が嫌だった」のみ。志望理由が曖昧・消去法"}, {"id": "a7", "category": "②主体性", "sub": "自発的行動", "question": "指示がない状況で、自分から動いた経験を教えてください。具体的にどう判断しましたか？", "weight": 5, "good": "「患者さんが待合で不安そうだったので、声をかけて状況を確認し担当者に伝えた」など具体的", "bad": "「言われたことはやっている」「特に気になることはなかった」と受け身"}, {"id": "a8", "category": "②主体性", "sub": "自己研鑽・学習意欲", "question": "ご自身のスキルアップのために、現在定期的に参加されている外部の講習会や勉強会などはありますか？ 具体的にどのような手技や理論を学ばれているかも併せて教えてください。", "weight": 5, "good": "参加している研修・勉強会名や学んでいる内容（介助技術、患者対応、感染対策など）を具体的に説明でき、日々の業務にどう活かしているか話せる", "bad": "「特に参加していない」「余裕がない」など、学びの機会や自己研鑽への意欲が見られない"}, {"id": "a10", "category": "③報連相", "sub": "報告タイミング", "question": "業務中に判断に迷った際、どのタイミングで上司・先輩に報告・相談しますか？", "weight": 5, "good": "「患者さんが痛みを訴えた時点で即スタッフに伝える。判断は自分でしない」と明確", "bad": "「大丈夫そうだったので様子を見た」「後で言おうと思っていた」"}, {"id": "a11", "category": "③報連相", "sub": "連絡の質", "question": "「報連相で失敗した」または「うまくできた」経験を一つ教えてください。", "weight": 5, "good": "「曖昧な伝え方で誤解された。以来、5W1Hで簡潔に伝えるようにした」と学びがある", "bad": "「失敗したことはない」と断言／具体的エピソードが出てこない"}, {"id": "a13", "category": "④チーム志向", "sub": "チーム最適", "question": "自分の意見と違う方針になった場合、どのように行動しますか？", "weight": 5, "good": "「まず方針の意図を理解しようとする。意見があれば適切なタイミングで伝える」", "bad": "「自分の考えと違うので従えない」または「何も言わず不満を抱える」"}, {"id": "a15", "category": "④チーム志向", "sub": "対立経験", "question": "チームメンバーと意見が食い違った際、どのようにコミュニケーションを図り、解決に導きますか？", "weight": 5, "good": "相手の意見を受け止めた上で、業務上何が最善かを基準に歩み寄り、具体的にどう解決へ導いたか話せる", "bad": "「自分の意見を通す」「先輩に任せる」など、対話や歩み寄りの姿勢が見られない"}, {"id": "a17", "category": "⑤問題解決力", "sub": "事実確認・原因分析", "question": "業務中に「何かおかしい」「問題がありそうだ」と感じた際、まずどのような事実（情報）を確認し、どのように原因を特定していますか？", "weight": 5, "good": "患者さんの様子・環境・自分の対応など複数の視点から事実を整理し、原因をいくつかの角度から考えてから対応している", "bad": "「なんとなく」「感覚で」判断する、事実確認をせずに思い込みで対応する"}, {"id": "a20", "category": "⑥素直さ", "sub": "フィードバック受容", "question": "上司・先輩から厳しい指摘を受けたとき、どのように受け止め行動しましたか？", "weight": 5, "good": "「最初は落ち込んだが、指摘の意図を考え直して翌日から行動を変えた」", "bad": "「理不尽だと思った」で終わる、または「そういう指摘を受けたことがない」"}, {"id": "a21", "category": "⑥素直さ", "sub": "自己認識", "question": "自分の弱点・苦手なことを教えてください。それに対してどう取り組んでいますか？", "weight": 4, "good": "具体的な弱点＋現在取り組んでいることをセットで語れる", "bad": "「特に弱点はない」「弱点はあるが特に対策はしていない」"}]</script>
 <script>
 // ============ Data ============
 const PROF = JSON.parse(document.getElementById('data-prof').textContent);
@@ -258,7 +272,46 @@ const JOBTYPES = [
   {key:'AS', label:'リハビリ助手'}
 ];
 
-const RADAR_AXES = ['①主体性','②報連相','③チーム志向','④問題解決力','⑤素直さ'];
+const RADAR_AXES = ['②主体性','③報連相','④チーム志向','⑤問題解決力','⑥素直さ'];
+
+// Pairs/groups of questions that probe a similar underlying trait from a different
+// angle. Rendered inline on each involved question so the interviewer can check
+// whether the candidate's answers are consistent with each other. Notes intentionally
+// don't hardcode category numbers (numbering can change) — related items are looked
+// up live from the current question set.
+const PROF_CONSISTENCY_PAIRS = [
+  {ids:['p8','p24','p25'], note:'患者・業務に対して自ら動く姿勢が一貫しているか'},
+  {ids:['p16','p31'], note:'意見の相違・対立への対応スタイルが一貫しているか（チーム内 ⇔ 他職種）'},
+  {ids:['p17','p19'], note:'考える力と実際に行動する力の一貫性'},
+  {ids:['p21','p22','p38'], note:'自己理解の深さ・成長意欲の一貫性'},
+  {ids:['p27','p34'], note:'患者とのコミュニケーションスタイルの一貫性'},
+];
+const ASST_CONSISTENCY_PAIRS = [
+  {ids:['a7','a17'], note:'自ら動く姿勢と問題への向き合い方の一貫性'},
+  {ids:['a15','a20'], note:'対人関係でのスタンスの一貫性'},
+  {ids:['a21','a23'], note:'自己理解・成長意欲の一貫性'},
+];
+
+function currentConsistencyPairs(){
+  return state.jobType === 'AS' ? ASST_CONSISTENCY_PAIRS : PROF_CONSISTENCY_PAIRS;
+}
+
+// Returns [{note, related:[{sub,category}]}] for the given item id, using only
+// items that are actually visible in the current question set (so a pair that
+// references a PT-only question won't show up when viewing 柔道整復師, etc).
+function relatedFor(itemId, items){
+  const byId = new Map(items.map(it=>[it.id, it]));
+  const out = [];
+  currentConsistencyPairs().forEach(p=>{
+    if(!p.ids.includes(itemId)) return;
+    const otherIds = p.ids.filter(id=>id!==itemId);
+    const related = otherIds.map(id=>byId.get(id)).filter(Boolean);
+    if(related.length>0 && byId.has(itemId)){
+      out.push({note:p.note, related});
+    }
+  });
+  return out;
+}
 
 // ============ State ============
 let state = {
@@ -482,7 +535,7 @@ function render(){
   for(const [cat, list] of groups){
     catHtml += `<section class="category">
       <div class="category-head"><h2>${escapeHtml(cat)}</h2><span class="count">${list.length}問</span></div>
-      ${list.map(renderQuestion).join('')}
+      ${list.map(q=>renderQuestion(q, items)).join('')}
     </section>`;
   }
 
@@ -558,7 +611,7 @@ function renderRadarInner(){
   const labelPts = RADAR_AXES.map((label,i)=>{
     const angle = -Math.PI/2 + i*(2*Math.PI/n);
     const rad = r+16;
-    return {x:cx+rad*Math.cos(angle), y:cy+rad*Math.sin(angle), label:label.replace(/①|②|③|④|⑤/g,'')};
+    return {x:cx+rad*Math.cos(angle), y:cy+rad*Math.sin(angle), label:label.replace(/[①②③④⑤⑥⑦⑧⑨]/g,'')};
   });
   let grids='';
   [0.33,0.66,1].forEach(f=>{ grids += `<polygon points="${polygon(gridPts(f))}" fill="none" stroke="rgba(241,236,224,.18)" stroke-width="1"/>`; });
@@ -575,11 +628,12 @@ function renderRadarInner(){
     <div class="radar-caption">5軸コンピテンシー平均</div>`;
 }
 
-function renderQuestion(it){
+function renderQuestion(it, allItems){
   const sc = getScore(it.id);
   const avg = average(sc.s1, sc.s2);
   const weighted = avg!==null ? (avg*it.weight).toFixed(1) : '—';
   const isFlag = avg!==null && avg<=2;
+  const related = relatedFor(it.id, allItems || currentItems());
   return `
   <div class="qcard ${isFlag?'flagged':''}" data-id="${it.id}">
     <div class="qtop">
@@ -599,6 +653,13 @@ function renderQuestion(it){
         <div class="bad"><b>🚫 注意すべき回答</b>${escapeHtml(it.bad)}</div>
       </div>
     </details>
+    ${related.length>0 ? `
+    <details class="link-hint">
+      <summary>🔗 一貫性チェック（関連する設問あり）</summary>
+      <div class="link-hint-body">
+        ${related.map(r=>`<p><b>${escapeHtml(r.note)}</b><br>この設問は「${r.related.map(x=>escapeHtml(x.sub)).join('」「')}」（${escapeHtml(r.related[0].category)}）とも関連しています。回答内容に一貫性があるか確認してみましょう。</p>`).join('')}
+      </div>
+    </details>` : ''}
     <div class="score-row">
       <div class="score-group">
         <label>面接官①</label>
@@ -670,7 +731,7 @@ function rerenderCard(id){
   if(!it) return;
   const card = document.querySelector(`.qcard[data-id="${id}"]`);
   if(!card) return;
-  card.outerHTML = renderQuestion(it);
+  card.outerHTML = renderQuestion(it, items);
   const newCard = document.querySelector(`.qcard[data-id="${id}"]`);
   newCard.querySelectorAll('.score-buttons').forEach(group=>{
     const role = group.dataset.role;
